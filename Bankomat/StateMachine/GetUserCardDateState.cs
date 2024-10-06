@@ -17,7 +17,7 @@ namespace Bankomat
 					if (DateTime.TryParseExact(cardDate, "MM/yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
 					{
 						context!.SetCardDate(date.ToString("MM/yy", CultureInfo.InvariantCulture));
-						await context!.SetAndExecuteAsync(new GetUserCardCvcState());
+						context!.SetState(new GetUserCardCvcState());
 
 						return;
 					}
@@ -33,12 +33,12 @@ namespace Bankomat
 			{
 				Console.WriteLine("Возврат к началу из-за неактивности пользователя");
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				Console.WriteLine("Незарегистрированная ошибка");
 			}
 
-			await context!.SetAndExecuteAsync(new InitialState());
+			context!.SetState(new InitialState());
 			return;
 		}
 	}

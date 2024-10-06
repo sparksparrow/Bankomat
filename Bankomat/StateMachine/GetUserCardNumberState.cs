@@ -17,7 +17,7 @@ namespace Bankomat
 					if (Regex.IsMatch(cardNumber, @"\d{4}\s\d{4}\s\d{4}\s\d{4}"))
 					{
 						context!.SetCardNubmer(cardNumber);
-						await context!.SetAndExecuteAsync(new GetUserCardDateState());
+						context!.SetState(new GetUserCardDateState());
 
 						return;
 					}
@@ -33,12 +33,12 @@ namespace Bankomat
 			{
 				Console.WriteLine("Возврат к началу из-за неактивности пользователя");
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				Console.WriteLine("Незарегистрированная ошибка");
 			}
 
-			await context!.SetAndExecuteAsync(new InitialState());
+			context!.SetState(new InitialState());
 			return;
 		}
 	}

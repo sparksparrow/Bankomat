@@ -15,18 +15,21 @@
 					var money = await Extensions.ReadLineWithTimeoutAsync();
 					if (int.TryParse(money, out var sumMoney))
 					{
-						if (context!.IsEnoughMoney(sumMoney))
+						(bool can, Dictionary<BanknoteType, int> _) = context!.CanWithdraw(sumMoney);
+						if (can)
 						{
-							context!.WithdrawMoney(sumMoney);
-							Console.WriteLine($"Успешно списано {sumMoney} рублей");
+							if (context!.WithdrawMoney(sumMoney))
+							{
+								Console.WriteLine($"Успешно списано {sumMoney} рублей");
 
-							await context!.SetAndExecuteAsync(new InitialState());
+								context!.SetState(new InitialState());
 
-							return;
+								return;
+							}
 						}
 						else
 						{
-							Console.WriteLine("Количество денег в банкомате недостаточно");
+							Console.WriteLine("Количество денег в банкомате недостаточно или введена неверная сумма");
 
 							continue;
 						}
@@ -43,12 +46,12 @@
 			{
 				Console.WriteLine("Возврат к началу из-за неактивности пользователя");
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				Console.WriteLine("Незарегистрированная ошибка");
 			}
 
-			await context!.SetAndExecuteAsync(new InitialState());
+			context!.SetState(new InitialState());
 			return;
 		}
 	}

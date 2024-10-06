@@ -17,7 +17,7 @@ namespace Bankomat
 					if (Regex.IsMatch(cardCvc, @"\d{3}"))
 					{
 						context!.SetCardCvc(cardCvc);
-						await context!.SetAndExecuteAsync(new StartWithdrawOperationState());
+						context!.SetState(new StartWithdrawOperationState());
 
 						return;
 					}
@@ -33,12 +33,12 @@ namespace Bankomat
 			{
 				Console.WriteLine("Возврат к началу из-за неактивности пользователя");
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				Console.WriteLine("Незарегистрированная ошибка");
 			}
 
-			await context!.SetAndExecuteAsync(new InitialState());
+			context!.SetState(new InitialState());
 			return;
 		}
 	}

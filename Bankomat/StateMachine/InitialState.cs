@@ -7,7 +7,7 @@
 			context!.ResetCard();
 			Console.WriteLine("Нажмите любую кнопку, чтобы снять деньги");
 			Console.Read();
-			await context!.SetAndExecuteAsync(new GetUserCardNumberState());
+			context!.SetState(new GetUserCardNumberState());
 		}
 	}
 }

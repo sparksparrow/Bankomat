@@ -35,7 +35,7 @@
 
 		internal void SetCardCvc(string cvc) => _bankomat.SetCardCvc(cvc);
 
-		internal bool IsEnoughMoney(int money) => _bankomat.IsEnoughMoney(money);
+		internal (bool,Dictionary<BanknoteType, int>) CanWithdraw(int money) => _bankomat.CanWithdraw(money);
 
 		internal bool WithdrawMoney(int money) => _bankomat.WithdrawMoney(money);
 
