@@ -6,7 +6,7 @@
 		{
 			Console.WriteLine("Нажмите любую кнопку, чтобы снять деньги");
 			Console.Read();
-			await context!.SetAndExecuteAsync(new GetUserCredentionsState());
+			await context!.SetAndExecuteAsync(new GetUserCardNumberState());
 		}
 	}
 }

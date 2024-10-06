@@ -4,9 +4,12 @@
 	{
 		private StateBase _stateBase;
 
-		internal ContextState()
+		private Bankomat _bankomat;
+
+		internal ContextState(Bankomat bankomat)
 		{
-			SetState(new InitialState());
+			_bankomat = bankomat;
+			SetState(new InitialState());			
 		}
 
 		internal void SetState(StateBase state)

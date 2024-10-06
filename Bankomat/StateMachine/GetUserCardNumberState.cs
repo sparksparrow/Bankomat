@@ -2,7 +2,7 @@
 
 namespace Bankomat
 {
-	internal class GetUserCredentionsState : StateBase
+	internal class GetUserCardNumberState : StateBase
 	{
 		internal async override Task ExecuteAsync()
 		{			

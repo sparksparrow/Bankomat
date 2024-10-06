@@ -2,7 +2,16 @@
 {
 	internal class Bankomat
 	{
-		private ContextState _state = new ContextState();
+		private ContextState _state;
+
+		private Card card;
+
+		private int MoneyStorage = 10000;
+
+		internal Bankomat()
+		{
+			_state = new ContextState(this);
+		}
 
 		internal async Task StartAwait()
 		{
