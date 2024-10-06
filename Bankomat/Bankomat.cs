@@ -4,9 +4,9 @@
 	{
 		private ContextState _state;
 
-		private Card card;
+		private Card _card;
 
-		private int MoneyStorage = 10000;
+		private int _moneyStorage = 10000;
 
 		internal Bankomat()
 		{
